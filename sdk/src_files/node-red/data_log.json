@@ -1,0 +1,1952 @@
+[
+    {
+        "id": "9c5582da.8a2b7",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm2/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 190,
+        "y": 580,
+        "wires": [
+            [
+                "6f1edb1.fc42624"
+            ]
+        ]
+    },
+    {
+        "id": "4aa71317.22458c",
+        "type": "debug",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6f1edb1.fc42624",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 560,
+        "wires": [
+            [
+                "a705532a.8a354"
+            ]
+        ]
+    },
+    {
+        "id": "1722313d.a634ff",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm2/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 200,
+        "y": 520,
+        "wires": [
+            [
+                "6f1edb1.fc42624"
+            ]
+        ]
+    },
+    {
+        "id": "7a4979f1.604a88",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm3/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 190,
+        "y": 760,
+        "wires": [
+            [
+                "84410a1b.7e9d38"
+            ]
+        ]
+    },
+    {
+        "id": "4cfe33ea.8c6ccc",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm3/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 200,
+        "y": 700,
+        "wires": [
+            [
+                "84410a1b.7e9d38"
+            ]
+        ]
+    },
+    {
+        "id": "84410a1b.7e9d38",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 740,
+        "wires": [
+            [
+                "a8f6c7b9.4a0908"
+            ]
+        ]
+    },
+    {
+        "id": "304678ee.d2d8e8",
+        "type": "debug",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 570,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "2790d733.ea7798",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm4/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 190,
+        "y": 940,
+        "wires": [
+            [
+                "c0a2c4a3.80a478"
+            ]
+        ]
+    },
+    {
+        "id": "b692f89d.f85d08",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm4/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 200,
+        "y": 880,
+        "wires": [
+            [
+                "c0a2c4a3.80a478"
+            ]
+        ]
+    },
+    {
+        "id": "c0a2c4a3.80a478",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 920,
+        "wires": [
+            [
+                "60f6c29.146ed3c"
+            ]
+        ]
+    },
+    {
+        "id": "9250f7df.4647b8",
+        "type": "debug",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "a705532a.8a354",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm316",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm316\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 500,
+        "wires": [
+            [
+                "4aa71317.22458c",
+                "c97598ed.5b3ea8"
+            ]
+        ]
+    },
+    {
+        "id": "a8f6c7b9.4a0908",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm317",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm317\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 680,
+        "wires": [
+            [
+                "304678ee.d2d8e8",
+                "f3384742.0beec8"
+            ]
+        ]
+    },
+    {
+        "id": "60f6c29.146ed3c",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm318",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm318\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 860,
+        "wires": [
+            [
+                "9250f7df.4647b8",
+                "2a74da1d.a34f86"
+            ]
+        ]
+    },
+    {
+        "id": "c97598ed.5b3ea8",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "rm316",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSejqqN0S30LeTyKkjGvWyFoL9Rr2kkpvB4FFNf5jz6l1p8K5w/formResponse?usp=pp_url&entry.1492206751={{payload.0}}&entry.2119248864={{payload.1}}&entry.2021424374={{payload.2}}&entry.1148518738={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 570,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f3384742.0beec8",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "317",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSfKa1reEsfVGLMkzk0D-ZVQTMTnWF6OFUdOOomGHV7ezFb8Xg/formResponse?usp=pp_url&entry.1564633708={{payload.0}}&entry.1321417568={{payload.1}}&entry.1095000032={{payload.2}}&entry.440564361={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2a74da1d.a34f86",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "318",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSdn8GiTquzN37Kp9Ofx0_vWNYNyX1iT8fCYXNnz8yJPlmsidg/formResponse?usp=pp_url&entry.1564633708={{payload.0}}&entry.1321417568={{payload.1}}&entry.1095000032={{payload.2}}&entry.440564361={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 570,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c94bd1ae.26e31",
+        "type": "inject",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "30",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "78b614f9.4fe5ec"
+            ]
+        ]
+    },
+    {
+        "id": "c3ac84e4.a711c8",
+        "type": "mqtt out",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "1426eb8a.fd1324",
+        "x": 530,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "78b614f9.4fe5ec",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "createTopic",
+        "func": "var i = context.get(\"i\")||0;\nvar myTopic = \"req/phuket/rm\" + (i + 1);\ni = i + 1;\n// i = {0, 1, 2, ..., 19}\nif(i > 19)\n{\n    i = 0;\n}\ncontext.set(\"i\", i);\nmsg.topic = myTopic;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 100,
+        "wires": [
+            [
+                "3489f375.45311c",
+                "c3ac84e4.a711c8"
+            ]
+        ]
+    },
+    {
+        "id": "3489f375.45311c",
+        "type": "debug",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 490,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "60753403.5b197c",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm5/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 190,
+        "y": 1120,
+        "wires": [
+            [
+                "2130dc3c.3c1214"
+            ]
+        ]
+    },
+    {
+        "id": "5ceb571b.0bce88",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm5/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 200,
+        "y": 1060,
+        "wires": [
+            [
+                "2130dc3c.3c1214"
+            ]
+        ]
+    },
+    {
+        "id": "2130dc3c.3c1214",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 1100,
+        "wires": [
+            [
+                "412794dc.87d12c"
+            ]
+        ]
+    },
+    {
+        "id": "412794dc.87d12c",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm321",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm321\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 1040,
+        "wires": [
+            [
+                "dcdae8df.87e6e8"
+            ]
+        ]
+    },
+    {
+        "id": "dcdae8df.87e6e8",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "321",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSeOY8PNopqJMbvCgoVYbVYiPQxfiw-klB6TpfsGRyBuqhhdyA/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69d90b9.52ac1f4",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm6/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 190,
+        "y": 1260,
+        "wires": [
+            [
+                "78b85f54.0ef87"
+            ]
+        ]
+    },
+    {
+        "id": "d7e67f0a.5015",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm6/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 200,
+        "y": 1200,
+        "wires": [
+            [
+                "78b85f54.0ef87"
+            ]
+        ]
+    },
+    {
+        "id": "78b85f54.0ef87",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 1240,
+        "wires": [
+            [
+                "6e8fa384.35192c"
+            ]
+        ]
+    },
+    {
+        "id": "6e8fa384.35192c",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm322",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm322\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 1180,
+        "wires": [
+            [
+                "f7fac1f8.87b53"
+            ]
+        ]
+    },
+    {
+        "id": "f7fac1f8.87b53",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "322",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSdods0j6KXKYaJl68aSwL0E6yO9e2xU-xxhRXZgARygKUduWQ/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b6d6f218.b9236",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm1/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "36f9d697.a0e83a"
+            ]
+        ]
+    },
+    {
+        "id": "36f9d697.a0e83a",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "14f3e26.68dcd1e"
+            ]
+        ]
+    },
+    {
+        "id": "2503f74b.3423b8",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm1/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 200,
+        "y": 340,
+        "wires": [
+            [
+                "36f9d697.a0e83a"
+            ]
+        ]
+    },
+    {
+        "id": "14f3e26.68dcd1e",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm315",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm315\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 320,
+        "wires": [
+            [
+                "b0453855.d0f578",
+                "f9f3ea23.e94798"
+            ]
+        ]
+    },
+    {
+        "id": "b0453855.d0f578",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "315",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSdMxAuXDImPjLjksV9LqYiZ-Ac6cQ5YbIf7kRYfFmQ_GRQZrw/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f9f3ea23.e94798",
+        "type": "debug",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "67cb0066.a2c53",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm7/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 190,
+        "y": 1400,
+        "wires": [
+            [
+                "7c3c1ee6.17ee6"
+            ]
+        ]
+    },
+    {
+        "id": "693d0ca6.b6ec14",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm7/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 200,
+        "y": 1340,
+        "wires": [
+            [
+                "7c3c1ee6.17ee6"
+            ]
+        ]
+    },
+    {
+        "id": "7c3c1ee6.17ee6",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 1380,
+        "wires": [
+            [
+                "fb436ddc.89a69"
+            ]
+        ]
+    },
+    {
+        "id": "fb436ddc.89a69",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm323",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm323\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 1320,
+        "wires": [
+            [
+                "178d4f3.73041b1"
+            ]
+        ]
+    },
+    {
+        "id": "178d4f3.73041b1",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "323",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSf54B3ET0OkAOGLbs4sEUeF8p0i1K6nXc1LZgMFcACIggs2tw/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f7f188ec.708988",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm8/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 200,
+        "y": 1480,
+        "wires": [
+            [
+                "375f6e81.374942"
+            ]
+        ]
+    },
+    {
+        "id": "809989a8.014498",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm8/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 190,
+        "y": 1540,
+        "wires": [
+            [
+                "375f6e81.374942"
+            ]
+        ]
+    },
+    {
+        "id": "375f6e81.374942",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 1520,
+        "wires": [
+            [
+                "b09dd80f.062ba8"
+            ]
+        ]
+    },
+    {
+        "id": "b09dd80f.062ba8",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm324",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm324\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 1460,
+        "wires": [
+            [
+                "38e353bd.87afbc"
+            ]
+        ]
+    },
+    {
+        "id": "38e353bd.87afbc",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "324",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLScI3k4A9P95Fih5oSQ9T9MIimiFmCp3Cgnp0Gwct1z3_Bb8Ow/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 1520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "edd3752c.3d5b88",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm9/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 200,
+        "y": 1600,
+        "wires": [
+            [
+                "4981e239.675f0c"
+            ]
+        ]
+    },
+    {
+        "id": "b80acdae.4b521",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm9/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 190,
+        "y": 1660,
+        "wires": [
+            [
+                "4981e239.675f0c"
+            ]
+        ]
+    },
+    {
+        "id": "4981e239.675f0c",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 1640,
+        "wires": [
+            [
+                "58ac2552.f637fc"
+            ]
+        ]
+    },
+    {
+        "id": "58ac2552.f637fc",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm325",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm325\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 1580,
+        "wires": [
+            [
+                "97e9e986.b0cd28"
+            ]
+        ]
+    },
+    {
+        "id": "97e9e986.b0cd28",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "325",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLScA0Kr01_YgVb-GfhA7L8512ISud2cyLVkykD4hEtOauWdaCQ/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 1640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "955bb8e4.cd60c8",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm10/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 1740,
+        "wires": [
+            [
+                "efe56373.e4273"
+            ]
+        ]
+    },
+    {
+        "id": "7aa3f53f.7be33c",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm10/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 1800,
+        "wires": [
+            [
+                "efe56373.e4273"
+            ]
+        ]
+    },
+    {
+        "id": "efe56373.e4273",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 1780,
+        "wires": [
+            [
+                "c028e5c2.20a118"
+            ]
+        ]
+    },
+    {
+        "id": "c028e5c2.20a118",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm326",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm326\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 1720,
+        "wires": [
+            [
+                "f9a773f1.b75bd"
+            ]
+        ]
+    },
+    {
+        "id": "f9a773f1.b75bd",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "326",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSc_7M0B3eAV7U-biITvxKDhrphFnqUHEBxdJZmoSJgZT2PiuQ/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 1780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c6f30ec.eec14",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm11/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 1880,
+        "wires": [
+            [
+                "ed536010.4165d"
+            ]
+        ]
+    },
+    {
+        "id": "a92b7eed.fb669",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm11/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 1940,
+        "wires": [
+            [
+                "ed536010.4165d"
+            ]
+        ]
+    },
+    {
+        "id": "ed536010.4165d",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 1920,
+        "wires": [
+            [
+                "a9067bdb.5387c8"
+            ]
+        ]
+    },
+    {
+        "id": "a9067bdb.5387c8",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm327",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm327\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 1860,
+        "wires": [
+            [
+                "e6247919.8a1768"
+            ]
+        ]
+    },
+    {
+        "id": "e6247919.8a1768",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "327",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSeTPxwIAbVeUhJwH5gj7hJQ68NkzRpwSr4eZDrKgSRWGqc8Ow/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 1920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b419fa7.59112",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm12/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 2020,
+        "wires": [
+            [
+                "b37f3cb0.6be59"
+            ]
+        ]
+    },
+    {
+        "id": "803164e1.7f4ea8",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm12/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 2080,
+        "wires": [
+            [
+                "b37f3cb0.6be59"
+            ]
+        ]
+    },
+    {
+        "id": "b37f3cb0.6be59",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 2060,
+        "wires": [
+            [
+                "474ca2e8.be79bc"
+            ]
+        ]
+    },
+    {
+        "id": "474ca2e8.be79bc",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm328",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm328\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 2000,
+        "wires": [
+            [
+                "35daf376.0a890c"
+            ]
+        ]
+    },
+    {
+        "id": "35daf376.0a890c",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "328",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSdkDEUs8C79LHxux_-_SJXUnHuBWEgEa5T387OAD7O4GNThMg/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 2060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a6f9fc2d.33def",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm13/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 2140,
+        "wires": [
+            [
+                "b248c620.a84618"
+            ]
+        ]
+    },
+    {
+        "id": "49c2c4f.535983c",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm13/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 2200,
+        "wires": [
+            [
+                "b248c620.a84618"
+            ]
+        ]
+    },
+    {
+        "id": "b248c620.a84618",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 2180,
+        "wires": [
+            [
+                "8e799e71.cbe51"
+            ]
+        ]
+    },
+    {
+        "id": "8e799e71.cbe51",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm331",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm331\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 2120,
+        "wires": [
+            [
+                "be9307e1.a5f3b8"
+            ]
+        ]
+    },
+    {
+        "id": "be9307e1.a5f3b8",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "331",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLScL-nXXW2MaxgXRdklPbUtjy0gxTwCR35fMA_vbtWuaDFKBUg/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 2180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53cb8aa4.49a4e4",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm14/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 2260,
+        "wires": [
+            [
+                "cd0dd4f3.68aa98"
+            ]
+        ]
+    },
+    {
+        "id": "e75cd81b.acbe48",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm14/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 2320,
+        "wires": [
+            [
+                "cd0dd4f3.68aa98"
+            ]
+        ]
+    },
+    {
+        "id": "cd0dd4f3.68aa98",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 2300,
+        "wires": [
+            [
+                "25b5ce20.a3fa02"
+            ]
+        ]
+    },
+    {
+        "id": "25b5ce20.a3fa02",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm332",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm332\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 2240,
+        "wires": [
+            [
+                "6e8cc5e0.5c69fc"
+            ]
+        ]
+    },
+    {
+        "id": "6e8cc5e0.5c69fc",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "332",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSdwd2vl0TtFL1PoxSqZeyOmLSBMI3F5l_35OgIPRzvGTI1uzA/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 2300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8f7068c7.e5e2c8",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm15/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 2380,
+        "wires": [
+            [
+                "6113183e.dc1158"
+            ]
+        ]
+    },
+    {
+        "id": "f17dddf8.a604a",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm15/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 2440,
+        "wires": [
+            [
+                "6113183e.dc1158"
+            ]
+        ]
+    },
+    {
+        "id": "6113183e.dc1158",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 2420,
+        "wires": [
+            [
+                "6dae47fc.13e5d8"
+            ]
+        ]
+    },
+    {
+        "id": "6dae47fc.13e5d8",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm333",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm333\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 2360,
+        "wires": [
+            [
+                "5283e67d.5c8fc8"
+            ]
+        ]
+    },
+    {
+        "id": "5283e67d.5c8fc8",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "333",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSeVVhQk2BWpJ3OAkk1WDGdJSkTa_D6HvWv0sDk9-R8TJOvisw/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 2420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1b7307f7.45c508",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm16/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 2520,
+        "wires": [
+            [
+                "fdc0ad2f.93c57"
+            ]
+        ]
+    },
+    {
+        "id": "717b5cd1.50fb04",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm16/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 2580,
+        "wires": [
+            [
+                "fdc0ad2f.93c57"
+            ]
+        ]
+    },
+    {
+        "id": "fdc0ad2f.93c57",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 2560,
+        "wires": [
+            [
+                "3d577d64.9c3e72"
+            ]
+        ]
+    },
+    {
+        "id": "3d577d64.9c3e72",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm334",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm334\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 2500,
+        "wires": [
+            [
+                "9f30eb25.2d1fd8"
+            ]
+        ]
+    },
+    {
+        "id": "9f30eb25.2d1fd8",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "334",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSdBcoGA8_nSqZ15VImkxE6j2ZWOOTMQgv-m06kJqee7W6mUvQ/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 2560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "54b327b6.307328",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm17/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 2660,
+        "wires": [
+            [
+                "35177f97.0de28"
+            ]
+        ]
+    },
+    {
+        "id": "aa855a14.b8bd98",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm17/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 2720,
+        "wires": [
+            [
+                "35177f97.0de28"
+            ]
+        ]
+    },
+    {
+        "id": "35177f97.0de28",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 2700,
+        "wires": [
+            [
+                "b291885a.5532a8"
+            ]
+        ]
+    },
+    {
+        "id": "b291885a.5532a8",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm335",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm335\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 2640,
+        "wires": [
+            [
+                "a1749fd0.1f7ac"
+            ]
+        ]
+    },
+    {
+        "id": "a1749fd0.1f7ac",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "335",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSf4J3GXA7KoEU3PZKN0OU2qeHf7wELYkSuLrJMwRWswBHEpAQ/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 2700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eb541703.970de8",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm18/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 2800,
+        "wires": [
+            [
+                "fe2182b9.bd882"
+            ]
+        ]
+    },
+    {
+        "id": "49a81007.c7d3b",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm18/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 2860,
+        "wires": [
+            [
+                "fe2182b9.bd882"
+            ]
+        ]
+    },
+    {
+        "id": "fe2182b9.bd882",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 2840,
+        "wires": [
+            [
+                "1e6f8154.ae209f"
+            ]
+        ]
+    },
+    {
+        "id": "1e6f8154.ae209f",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm336",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm336\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 2780,
+        "wires": [
+            [
+                "feece778.c11fd8"
+            ]
+        ]
+    },
+    {
+        "id": "feece778.c11fd8",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "336",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSesJIPyMuvOQsS29RjsDwopXUjxIkHnKQZUh9wxEL5NsNWccQ/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 2840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b8934194.8b1df",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm19/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 2920,
+        "wires": [
+            [
+                "ae910bbb.766bb8"
+            ]
+        ]
+    },
+    {
+        "id": "cb900dfe.ee924",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm19/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 2980,
+        "wires": [
+            [
+                "ae910bbb.766bb8"
+            ]
+        ]
+    },
+    {
+        "id": "ae910bbb.766bb8",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 2960,
+        "wires": [
+            [
+                "dad8817f.d892a"
+            ]
+        ]
+    },
+    {
+        "id": "dad8817f.d892a",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm337",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm337\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 2900,
+        "wires": [
+            [
+                "d5854724.5527d8"
+            ]
+        ]
+    },
+    {
+        "id": "d5854724.5527d8",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "337",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSf0WrS0Vf3UhJsUDlie8pGDpI5zSj89WuHj_1-UwnDpQCBGjw/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 2960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f465c9cf.1cf9d8",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm20/Humidity_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 170,
+        "y": 3060,
+        "wires": [
+            [
+                "f96a6392.b8c1f"
+            ]
+        ]
+    },
+    {
+        "id": "c456a458.e4aeb8",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "res/phuket/rm20/Temp_read",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1426eb8a.fd1324",
+        "x": 160,
+        "y": 3120,
+        "wires": [
+            [
+                "f96a6392.b8c1f"
+            ]
+        ]
+    },
+    {
+        "id": "f96a6392.b8c1f",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "keep",
+        "func": "var topic = msg.topic.split(\"/\")[3];\nvar value = msg.payload;\nvar temp = context.get(\"temp\")||'0';\nvar humid = context.get(\"humid\")||'0';\n\nif(topic === \"Temp_read\")\n{\n    // Keep value then return\n    context.set(\"temp\", value);\n    msg.payload = {temp:temp, humid:humid};\n    return msg;\n    \n}\nelse if(topic === \"Humidity_read\")\n{\n    // keep value only not return\n    context.set(\"humid\", value);\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 3100,
+        "wires": [
+            [
+                "bb95db0d.966ee8"
+            ]
+        ]
+    },
+    {
+        "id": "bb95db0d.966ee8",
+        "type": "function",
+        "z": "d5a4c433.5cea18",
+        "name": "rm338",
+        "func": "var temp = msg.payload[\"temp\"];\nvar humid = msg.payload[\"humid\"];\nvar roomNum = \"rm338\";\nvar uts = (Math.floor(Date.now())).toString();\nif((temp !== '0') || (humid !== '0'))\n{\n    msg.payload = [temp, humid, roomNum, uts];\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 3040,
+        "wires": [
+            [
+                "d087f0f0.4a207"
+            ]
+        ]
+    },
+    {
+        "id": "d087f0f0.4a207",
+        "type": "http request",
+        "z": "d5a4c433.5cea18",
+        "name": "338",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSecWR67I_3LNaPj1DVDXePkYV-j9XHAMAWba4e8nf-r-aao1Q/formResponse?usp=pp_url&entry.1441242961={{payload.0}}&entry.355508118={{payload.1}}&entry.988660010={{payload.2}}&entry.2082851192={{payload.3}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 550,
+        "y": 3100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "19592730.48fbd9",
+        "type": "mqtt out",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "myssh/req",
+        "qos": "0",
+        "retain": "false",
+        "broker": "58cc6ff7.d87f",
+        "x": 410,
+        "y": 3220,
+        "wires": []
+    },
+    {
+        "id": "d6cc7f5.5a5908",
+        "type": "mqtt in",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "topic": "myssh/res",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "58cc6ff7.d87f",
+        "x": 170,
+        "y": 3300,
+        "wires": [
+            [
+                "6a358afc.968ae4",
+                "101d2e9f.efb5c1"
+            ]
+        ]
+    },
+    {
+        "id": "6a358afc.968ae4",
+        "type": "debug",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 420,
+        "y": 3300,
+        "wires": []
+    },
+    {
+        "id": "355762a4.e6e0ce",
+        "type": "ui_text_input",
+        "z": "d5a4c433.5cea18",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "39d40a9b.9977e6",
+        "order": 0,
+        "width": "15",
+        "height": "8",
+        "passthru": true,
+        "mode": "text",
+        "delay": "2000",
+        "topic": "",
+        "x": 160,
+        "y": 3220,
+        "wires": [
+            [
+                "19592730.48fbd9"
+            ]
+        ]
+    },
+    {
+        "id": "101d2e9f.efb5c1",
+        "type": "ui_text",
+        "z": "d5a4c433.5cea18",
+        "group": "39d40a9b.9977e6",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "name": "",
+        "label": "res",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 420,
+        "y": 3360,
+        "wires": []
+    },
+    {
+        "id": "1426eb8a.fd1324",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "m10.cloudmqtt.com",
+        "port": "17606",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "58cc6ff7.d87f",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "sympMqtt",
+        "broker": "m10.cloudmqtt.com",
+        "port": "17606",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "39d40a9b.9977e6",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "f8f81466.fd1a68",
+        "disp": true,
+        "width": "16",
+        "collapse": false
+    },
+    {
+        "id": "f8f81466.fd1a68",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
